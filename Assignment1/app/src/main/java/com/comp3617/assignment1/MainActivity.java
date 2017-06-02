@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-//answer 23132
+
     private static String LOGTAG = "Assignment";
     private static int QUESTION_COUNT;
     private static int ANSWERS_COUNT = 3;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startAction(View view){
         currentQuestion = 0;
+        usersAnswers = new int[QUESTION_COUNT];
         question.setText(questions[0]);
         for(int i = 0; i<ANSWERS_COUNT; i++){
             answerGroup[i].setVisibility(View.VISIBLE);
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextAction(View view){
         if(usersAnswers[currentQuestion] == 0){
-            Toast.makeText(this, "Please choose a answer", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getText(R.string.chooseAnswer), Toast.LENGTH_SHORT).show();
         }else if(currentQuestion <QUESTION_COUNT -1) {
             prepareNextQuestion();
         }else{
@@ -102,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         answerGroup = new RadioButton[] {answer1,answer2,answer3};
         answerTextGroup = new String[][]{getResources().getStringArray(R.array.Question1),getResources().getStringArray(R.array.Question2),getResources().getStringArray(R.array.Question3),getResources().getStringArray(R.array.Question4),getResources().getStringArray(R.array.Question5)};
         QUESTION_COUNT = questions.length;
-        usersAnswers = new int[QUESTION_COUNT];
         radioGroup = (RadioGroup)findViewById(R.id.radioBtnGroup);
     }
 }

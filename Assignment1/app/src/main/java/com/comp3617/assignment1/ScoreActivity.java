@@ -18,7 +18,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         if(intent !=null){
             scoreNum = intent.getIntExtra("score",0);
-            score.setText(Integer.toString(scoreNum));
+            score.setText(String.format("%d",scoreNum));
         }
     }
 
