@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Assignment1</string>
+    <string name="question">Press start to answer question</string>
+    <string name="answer1">Answer1</string>
+    <string name="answer2">Answser2</string>
+    <string name="answer3">Answer3</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+    <string name="your_score">Your Score:</string>
+    <string name="_0">0</string>
+    <string name="start_over">Start over</string>
+
+    <string-array name="questions">
+        <item>In what place was Christmas once illegal?</item>
+        <item>In California, it is illegal to eat oranges while doing what?</item>
+        <item>Coulrophobia means fear of what?</item>
+        <item>How many dimples are there on a regular golf ball?</item>
+        <item>Which of the following is the longest running American animated TV show?</item>
+    </string-array>
+
+    <string-array name="Question1">
+        <item>Brazil</item>
+        <item>England</item>
+        <item>France</item>
+    </string-array>
+
+    <string-array name="Question2">
+        <item>Working on a computer</item>
+        <item>Driving</item>
+        <item>Bathing</item>
+    </string-array>
+
+    <string-array name="Question3">
+        <item>Clowns</item>
+        <item>Old People</item>
+        <item>Sacred Things</item>
+    </string-array>
+
+    <string-array name="Question4">
+        <item>418</item>
+        <item>377</item>
+        <item>336</item>
+    </string-array>
+
+    <string-array name="Question5">
+        <item>Pokemon</item>
+        <item>Simpsons</item>
+        <item>TV Funhouse</item>
+    </string-array>
+
+</resources>
