@@ -34,10 +34,18 @@ import java.util.List;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends  PreferenceFragment{
+public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pre_setting);
+        getFragmentManager().beginTransaction().replace(android.R.id.content,new SetteingPreferenceFragment()).commit();
+    }
+
+    public static class SetteingPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_setting);
+        }
     }
 }

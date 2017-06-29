@@ -1,19 +1,19 @@
 package com.comp3617.assignment2;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.AnimRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.comp3617.assignment2.util.Task;
-
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -48,6 +48,9 @@ public class TaskListAdapter extends ArrayAdapter<TaskModel> {
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),EditTaskActivity.class);
+                intent.putExtra("taskDetailID", taskModel.getID());
+                ctx.startActivity(intent);
                 Toast.makeText(ctx, "I clicked task "+ taskModel.getTaskName()+" ID:"+ Integer.toString(taskModel.getID()), Toast.LENGTH_LONG).show();
             }
         });
