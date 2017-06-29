@@ -1,25 +1,21 @@
 package com.comp3617.assignment2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.comp3617.assignment2.util.Task;
 
 import java.util.Date;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 public class DisplayTaskActivity extends AppCompatActivity {
     ListView taskListView;
@@ -30,21 +26,23 @@ public class DisplayTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_task);
 
+        //Realm
         realm = Realm.getDefaultInstance();
         Task task = new Task(realm);
-        task.addNewTask(new TaskModel("Test",new Date(),new Date()));
+        for(int i=0;i<20;i++) {
+            task.addNewTask(new TaskModel("Test"+ Integer.toString(i),new Date(),new Date()));
+        }
 
-
+        //ListView
         taskListView = (ListView) findViewById(R.id.list_view);
         TaskListAdapter adapter = new TaskListAdapter(this,task.getAllTask());
         taskListView.setAdapter(adapter);
 
-
-
-
+        //ToolBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Add button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +69,8 @@ public class DisplayTaskActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this,"I clicked setting",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(DisplayTaskActivity.this,SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
