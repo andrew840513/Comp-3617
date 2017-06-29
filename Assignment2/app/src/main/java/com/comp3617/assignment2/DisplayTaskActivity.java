@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.comp3617.assignment2.util.Task;
 
@@ -72,6 +73,9 @@ public class DisplayTaskActivity extends AppCompatActivity {
             Intent intent = new Intent(DisplayTaskActivity.this,SettingsActivity.class);
             startActivity(intent);
             return true;
+        }else if(id == R.id.add_new_task) {
+            Toast.makeText(getApplicationContext(),"Add",Toast.LENGTH_SHORT).show();
+            return  true;
         }
 
         return super.onOptionsItemSelected(item);
