@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.comp3617.assignment2.util.Task;
 
@@ -23,25 +24,28 @@ public class AddTaskActivity extends AppCompatActivity {
     private TextView taskName;
     private TextView dueDate;
     private Button saveBtn;
-
+    private Button cancelBtn;
     private Task task = new Task(Realm.getDefaultInstance());
 
     boolean hide = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
+        setContentView(R.layout.activity_modify_task);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        taskName = (TextView) findViewById(R.id.add_taskName);
-        dueDate = (TextView) findViewById(R.id.add_dueDate);
+        taskName = (TextView) findViewById(R.id.taskName);
+        dueDate = (TextView) findViewById(R.id.dueDate);
 
-        saveBtn = (Button) findViewById(R.id.add_saveBtn);
+        saveBtn = (Button) findViewById(R.id.save);
+        cancelBtn = (Button) findViewById(R.id.cancelAndDelete);
 
+        cancelBtn.setText("Cancel");
 
         taskName.setOnClickListener(onClickText());
         dueDate.setOnClickListener(onClickDate());
         saveBtn.setOnClickListener(onClickSave());
+        cancelBtn.setOnClickListener(onClickCancel());
     }
     public View.OnClickListener onClickText() {
         return new View.OnClickListener() {
@@ -67,6 +71,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),DisplayTaskActivity.class);
                     startActivityForResult(intent,100);
                 }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),"You need to enter date",Toast.LENGTH_LONG).show();
                     Log.d("Andrew",e.getMessage());
                 }
             }
@@ -78,10 +83,19 @@ public class AddTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putInt("dueDateLbl",R.id.add_dueDate);
+                bundle.putInt("dueDateLbl",R.id.dueDate);
                 DialogFragment dialogFragment = new DatePickerFragment();
                 dialogFragment.setArguments(bundle);
                 dialogFragment.show(getFragmentManager(),"datePicker");
+            }
+        };
+    }
+
+    public View.OnClickListener onClickCancel(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         };
     }
