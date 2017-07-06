@@ -71,7 +71,8 @@ public class EditTaskActivity extends AppCompatActivity {
         finishBox = (CheckBox) findViewById(R.id.finishBox);
 
         taskName.setText(taskModel.getTaskName());
-        dueDate.setText(taskModel.getDueDate().toString());
+        SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault());
+        dueDate.setText(format.format(taskModel.getDueDate()));
         deleteBtn.setText(R.string.delete);
         finishBox.setChecked(taskModel.isFinished());
 
