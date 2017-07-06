@@ -23,7 +23,7 @@
             android:layout_weight="0.05" />
 
         <EditText
-            android:id="@+id/edit_taskName"
+            android:id="@+id/add_taskName"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/edit_dueDate"
+            android:id="@+id/add_dueDate"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -78,17 +78,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginTop="20dp"
         android:background="#ffffff">
 
-        <Button
-            android:id="@+id/emailBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FBFBFB"
-            android:text="Email"
-            android:textColor="#1ebcf0" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="set a reminder"
+            android:textSize="20dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +97,7 @@
         android:layout_marginTop="20dp">
 
         <Button
-            android:id="@+id/edit_save"
+            android:id="@+id/add_saveBtn"
             android:layout_width="200dp"
             android:layout_height="35dp"
             android:layout_gravity="bottom"
@@ -109,7 +109,7 @@
             android:text="Save" />
 
         <Button
-            android:id="@+id/edit_delete"
+            android:id="@+id/add_cancelBtn"
             android:layout_width="200dp"
             android:layout_height="35dp"
             android:layout_gravity="bottom"
@@ -117,8 +117,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="#FF0000"
-            android:text="Delete" />
+            android:text="Cancel" />
     </LinearLayout>
 
 </LinearLayout>
-

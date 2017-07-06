@@ -3,18 +3,14 @@ package com.comp3617.assignment2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.comp3617.assignment2.util.Task;
-
-import java.util.Date;
 
 import io.realm.Realm;
 
@@ -30,9 +26,6 @@ public class DisplayTaskActivity extends AppCompatActivity {
         //Realm
         realm = Realm.getDefaultInstance();
         Task task = new Task(realm);
-        for(int i=0;i<20;i++) {
-            task.addNewTask(new TaskModel("Test"+ Integer.toString(i),new Date(),new Date()));
-        }
 
         //ListView
         taskListView = (ListView) findViewById(R.id.list_view);
@@ -48,8 +41,7 @@ public class DisplayTaskActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addTask();
             }
         });
     }
@@ -74,10 +66,23 @@ public class DisplayTaskActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }else if(id == R.id.add_new_task) {
-            Toast.makeText(getApplicationContext(),"Add",Toast.LENGTH_SHORT).show();
+            addTask();
             return  true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addTask(){
+        Intent intent = new Intent(getApplication(), AddTaskActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 100){
+            taskListView.deferNotifyDataSetChanged();
+        }
     }
 }

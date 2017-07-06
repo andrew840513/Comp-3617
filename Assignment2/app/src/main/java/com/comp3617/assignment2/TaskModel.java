@@ -3,15 +3,13 @@ package com.comp3617.assignment2;
 import java.util.Date;
 
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
-
-import static android.os.Build.ID;
 
 /**
  * Created by Andrew on 2017-06-28.
  */
 
 public class TaskModel extends RealmObject {
+    private boolean finished = false;
     private String taskName;
     private Date dueDate;
     private Date startDate;
@@ -19,10 +17,9 @@ public class TaskModel extends RealmObject {
 
     public TaskModel(){}
 
-    public TaskModel(String taskName, Date dueDate, Date startDate) {
+    public TaskModel(String taskName, Date dueDate) {
         this.taskName = taskName;
         this.dueDate = dueDate;
-        this.startDate = startDate;
     }
 
     public int getID() {
@@ -41,32 +38,30 @@ public class TaskModel extends RealmObject {
         this.taskName = taskName;
     }
 
-    public Date getDueDate() {
-        return dueDate;
-    }
+    public Date getDueDate(){ return dueDate;}
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public boolean isFinished() {
+        return finished;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     public void setTaskModel(TaskModel task) {
         setTaskName(task.getTaskName());
         setDueDate(task.getDueDate());
-        setStartDate(task.getStartDate());
     }
 
     @Override
     public String toString() {
         return "TaskModel{" +
-                "taskName='" + taskName + '\'' +
+                "finished=" + finished +
+                ", taskName='" + taskName + '\'' +
                 ", dueDate=" + dueDate +
                 ", startDate=" + startDate +
                 ", ID=" + ID +

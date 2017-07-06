@@ -14,39 +14,36 @@ import android.widget.TextView;
 
 import com.comp3617.assignment2.util.Task;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import io.realm.Realm;
 
-public class EditTaskActivity extends AppCompatActivity {
+public class AddTaskActivity extends AppCompatActivity {
     private TextView taskName;
     private TextView dueDate;
-    private Button deleteBtn;
+    private Button saveBtn;
+
     private Task task = new Task(Realm.getDefaultInstance());
-    private int ID;
+
     boolean hide = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_task);
-
+        setContentView(R.layout.activity_add_task);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Intent intent = getIntent();
-        ID = intent.getIntExtra("taskDetailID",0);
+        taskName = (TextView) findViewById(R.id.add_taskName);
+        dueDate = (TextView) findViewById(R.id.add_dueDate);
 
-        TaskModel taskModel = task.getTask(ID);
+        saveBtn = (Button) findViewById(R.id.add_saveBtn);
 
-        taskName = (TextView) findViewById(R.id.edit_taskName);
-        dueDate = (TextView) findViewById(R.id.edit_dueDate);
-        deleteBtn = (Button) findViewById(R.id.edit_delete);
-
-        taskName.setText(taskModel.getTaskName());
-        dueDate.setText(taskModel.getDueDate().toString());
 
         taskName.setOnClickListener(onClickText());
         dueDate.setOnClickListener(onClickDate());
-        deleteBtn.setOnClickListener(onDelete());
+        saveBtn.setOnClickListener(onClickSave());
     }
-    public View.OnClickListener onClickText(){
+    public View.OnClickListener onClickText() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,29 +54,40 @@ public class EditTaskActivity extends AppCompatActivity {
         };
     }
 
+    public View.OnClickListener onClickSave(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String dateText = (String)dueDate.getText();
+                SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                try{
+                    Date date = format.parse(dateText);
+                    TaskModel newTask = new TaskModel(taskName.getText().toString(),date);
+                    task.addNewTask(newTask);
+                    Intent intent = new Intent(getApplicationContext(),DisplayTaskActivity.class);
+                    startActivityForResult(intent,100);
+                }catch (Exception e){
+                    Log.d("Andrew",e.getMessage());
+                }
+            }
+        };
+    }
+
     public View.OnClickListener onClickDate(){
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("dueDateLbl",R.id.add_dueDate);
                 DialogFragment dialogFragment = new DatePickerFragment();
+                dialogFragment.setArguments(bundle);
                 dialogFragment.show(getFragmentManager(),"datePicker");
             }
         };
     }
-
-    public View.OnClickListener onDelete(){
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                task.deleteTask(ID);
-                Intent intent = new Intent(getApplicationContext(), DisplayTaskActivity.class);
-                startActivityForResult(intent,100);
-            }
-        };
-    }
-
     private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 }

@@ -7,7 +7,6 @@ import com.comp3617.assignment2.TaskModel;
 import java.util.ArrayList;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 
 /**
@@ -42,8 +41,8 @@ public class Task {
                 int nextID = (int) realm.where(TaskModel.class).count();
                 TaskModel newTask = realm.createObject(TaskModel.class);
                 newTask.setTaskName(task.getTaskName());
-                newTask.setStartDate(task.getStartDate());
                 newTask.setDueDate(task.getDueDate());
+                newTask.setFinished(task.isFinished());
                 newTask.setID(nextID);
                 Log.d("Andrew",newTask.toString());
             }
