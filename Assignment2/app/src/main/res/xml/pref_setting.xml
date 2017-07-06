@@ -2,9 +2,15 @@
 <PreferenceScreen  xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:defaultValue="false"
-        android:key="enable_reminder"
-        android:summary="If you want to get reminder notification when the task start"
-        android:title="Enable auto reminder"
+        android:key="enable_addTo_calendar"
+        android:summary="If you want to add task to your calendar"
+        android:title="Enable add to calendar"
+        />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="enable_share_task"
+        android:summary="If you want to share task whit others"
+        android:title="Enable share by email"
         />
 </PreferenceScreen>
 

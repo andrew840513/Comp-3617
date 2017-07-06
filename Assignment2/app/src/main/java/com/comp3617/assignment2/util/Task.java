@@ -60,6 +60,15 @@ public class Task {
         });
     }
 
+    public void setFinish(final int ID, final boolean isfinish) {
+        final TaskModel updateTask = realm.where(TaskModel.class).equalTo("ID",ID).findFirst();
+        realm.executeTransaction(new Realm.Transaction(){
+            @Override
+            public void execute(Realm realm) {
+                updateTask.setFinished(isfinish);
+            }
+        });
+    }
     public void deleteTask(final int ID) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override

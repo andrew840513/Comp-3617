@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="addBtnColor">#FFFF00</color>
+    <color name="modifyTaskBackground">#DDDDDD</color>
+    <color name="task_tile">#FFFFFF</color>
+    <color name="task_text">#000000</color>
+    <color name="task_button_text">#1EBCF0</color>
+    <color name="task_save_button">#1EBCF0</color>
+    <color name="task_cancel_delete_button">#FF0000</color>
 </resources>

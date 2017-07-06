@@ -75,4 +75,14 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="add_new_task">Add new task</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="set_a_reminder">set a reminder</string>
+    <string name="email">Email</string>
+    <string name="due">Due</string>
+    <string name="placeholder_date">Wed Jun 28</string>
+    <string name="task_name">Task Name</string>
+    <string name="enter_date">You need to enter date</string>
+    <string name="task_name_label">Task Name Label</string>
 </resources>

@@ -10,28 +10,32 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.comp3617.assignment2.util.Task;
 
 import java.util.List;
+
+import io.realm.Realm;
 
 /**
  * Created by Andrew on 2017-06-28.
  */
 
-public class TaskListAdapter extends ArrayAdapter<TaskModel> {
+class TaskListAdapter extends ArrayAdapter<TaskModel> {
     private final Context ctx;
-    private List<TaskModel> task;
+    private List<TaskModel> taskModelList;
+    private Task task = new Task(Realm.getDefaultInstance());
 
-    public TaskListAdapter(Context ctx, List<TaskModel> task) {
+    TaskListAdapter(Context ctx, List<TaskModel> task) {
         super(ctx,0,task);
         this.ctx = ctx;
-        this.task = task;
+        this.taskModelList = task;
     }
 
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View rowView = null;
-        final TaskModel taskModel = task.get(position);
+    @Override @NonNull
+    public View getView(int position, @Nullable final View convertView, @NonNull final ViewGroup parent) {
+        final View rowView;
+        final TaskModel taskModel = taskModelList.get(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView = inflater.inflate(R.layout.list_prototype_layout, parent, false);
@@ -40,17 +44,24 @@ public class TaskListAdapter extends ArrayAdapter<TaskModel> {
         }
         TextView taskName = rowView.findViewById(R.id.list_nameLbl);
         TextView startDate = rowView.findViewById(R.id.list_dateLbl);
-        CheckBox checkBox = rowView.findViewById(R.id.list_checkBox);
+        final CheckBox checkBox = rowView.findViewById(R.id.list_checkBox);
         taskName.setText(taskModel.getTaskName());
         startDate.setText(taskModel.getDueDate().toString());
         checkBox.setChecked(taskModel.isFinished());
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                task.setFinish(taskModel.getID(),!taskModel.isFinished());
+            }
+        });
+
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),EditTaskActivity.class);
                 intent.putExtra("taskDetailID", taskModel.getID());
                 ctx.startActivity(intent);
-                Toast.makeText(ctx, "I clicked task "+ taskModel.getTaskName()+" ID:"+ Integer.toString(taskModel.getID()), Toast.LENGTH_LONG).show();
             }
         });
         return rowView;

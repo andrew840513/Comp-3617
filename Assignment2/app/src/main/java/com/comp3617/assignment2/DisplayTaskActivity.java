@@ -17,7 +17,8 @@ import io.realm.Realm;
 public class DisplayTaskActivity extends AppCompatActivity {
     ListView taskListView;
     Realm realm;
-
+    TaskListAdapter adapter;
+    Task task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +26,11 @@ public class DisplayTaskActivity extends AppCompatActivity {
 
         //Realm
         realm = Realm.getDefaultInstance();
-        Task task = new Task(realm);
+        task = new Task(realm);
 
         //ListView
         taskListView = (ListView) findViewById(R.id.list_view);
-        TaskListAdapter adapter = new TaskListAdapter(this,task.getAllTask());
+        adapter = new TaskListAdapter(this,task.getAllTask());
         taskListView.setAdapter(adapter);
 
         //ToolBar
@@ -79,10 +80,9 @@ public class DisplayTaskActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 100){
-            taskListView.deferNotifyDataSetChanged();
-        }
+    protected void onResume() {
+        super.onResume();
+        adapter = new TaskListAdapter(this,task.getAllTask());
+        taskListView.setAdapter(adapter);
     }
 }

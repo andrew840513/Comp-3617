@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dddddd"
-    android:orientation="vertical"
-    tools:context="com.comp3617.assignment2.EditTaskActivity">
+    android:background="@color/modifyTaskBackground"
+    tools:context="com.comp3617.assignment2.EditTaskActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#ffffff"
+        android:background="@color/task_tile"
         android:clickable="true"
         android:focusableInTouchMode="true" >
 
@@ -26,14 +25,16 @@
             android:id="@+id/taskName"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.62"
+            android:layout_height="50dp"
+            android:layout_weight="0.32"
             android:background="@android:color/transparent"
             android:ems="10"
             android:inputType="text"
-            android:textColor="#000000"
+            android:textColor="@color/task_text"
             android:textSize="16sp"
-            tools:text="Task Name" />
+            android:padding="10dp"
+            android:hint="@string/task_name"
+            tools:text="@string/task_name" />
     </LinearLayout>
 
     <View
@@ -47,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="#ffffff">
+        android:background="@color/task_tile">
 
         <ImageView
             android:id="@+id/imageView"
@@ -62,7 +63,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.03"
             android:paddingLeft="5dp"
-            android:text="Due"
+            android:text="@string/due"
             android:textSize="16sp" />
 
         <TextView
@@ -72,7 +73,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.89"
             android:gravity="center|end"
-            tools:text="Tue Jun 28 2017" />
+            tools:text="@string/placeholder_date" />
 
     </LinearLayout>
 
@@ -80,28 +81,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="#ffffff">
+        android:background="@color/modifyTaskBackground"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/emailBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FBFBFB"
-            android:text="Email"
+            android:background="@color/task_tile"
+            android:text="@string/email"
             android:textColor="#1ebcf0" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:background="#ffffff">
-
-        <CheckBox
-            android:id="@+id/reminderBox"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="set a reminder"
-            android:textSize="20dp"/>
+        <Button
+            android:id="@+id/reminderBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/task_tile"
+            android:text="@string/set_a_reminder"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/task_button_text" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,8 +114,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="40dp"
             android:layout_weight="1"
-            android:background="#1ebcf0"
-            android:text="Save" />
+            android:background="@color/task_save_button"
+            android:text="@string/save" />
 
         <Button
             android:id="@+id/cancelAndDelete"
@@ -128,8 +125,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="#FF0000"
-            android:text="Delete" />
+            android:background="@color/task_cancel_delete_button"
+            android:text="@string/delete" />
     </LinearLayout>
 
 </LinearLayout>
