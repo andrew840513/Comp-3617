@@ -85,4 +85,5 @@
     <string name="task_name">Task Name</string>
     <string name="enter_date">You need to enter date</string>
     <string name="task_name_label">Task Name Label</string>
+    <string name="logTag">Andrew</string>
 </resources>

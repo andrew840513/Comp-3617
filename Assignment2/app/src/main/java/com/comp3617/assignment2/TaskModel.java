@@ -12,7 +12,6 @@ public class TaskModel extends RealmObject {
     private boolean finished = false;
     private String taskName;
     private Date dueDate;
-    private Date startDate;
     private int ID;
 
     public TaskModel(){}
@@ -63,7 +62,6 @@ public class TaskModel extends RealmObject {
                 "finished=" + finished +
                 ", taskName='" + taskName + '\'' +
                 ", dueDate=" + dueDate +
-                ", startDate=" + startDate +
                 ", ID=" + ID +
                 '}';
     }

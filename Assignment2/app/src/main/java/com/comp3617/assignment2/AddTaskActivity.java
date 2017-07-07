@@ -83,7 +83,7 @@ public class AddTaskActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Andrew",Boolean.toString(hide));
+                Log.d(getString(R.string.logTag),Boolean.toString(hide));
                 hideKeyboard(view);
                 taskName.clearFocus();
             }
@@ -103,7 +103,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     finish();
                 }catch (Exception e){
                     Toast.makeText(getApplicationContext(),R.string.enter_date,Toast.LENGTH_LONG).show();
-                    Log.d("Andrew",e.getMessage());
+                    Log.d(getString(R.string.logTag),e.getMessage());
                 }
             }
         };

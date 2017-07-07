@@ -88,7 +88,7 @@ public class EditTaskActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Andrew",Boolean.toString(hide));
+                Log.d(getString(R.string.logTag),Boolean.toString(hide));
                 hideKeyboard(view);
                 taskName.clearFocus();
             }
