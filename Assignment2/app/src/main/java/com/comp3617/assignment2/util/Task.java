@@ -34,6 +34,7 @@ public class Task {
         final TaskModel searchTask = realm.where(TaskModel.class).equalTo("ID",ID).findFirst();
         return searchTask;
     }
+
     public void addNewTask(final TaskModel task) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
